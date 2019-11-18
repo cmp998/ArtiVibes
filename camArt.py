@@ -22,8 +22,8 @@ def getSong(valence):
     username = "connor_pautz"
 
     token = util.prompt_for_user_token(username, scope,
-        client_id='62e21b5370884eee90c6d332110df385',
-        client_secret='71bb03bebc084c538e0f3352e244141d',
+        client_id='[CLIENT_ID]',
+        client_secret='[CLIENT_SECRET]',
         redirect_uri='https://localhost:8080/callback')
 
     if token:
@@ -43,9 +43,9 @@ def getSong(valence):
             stuff = requests.post('https://api.spotify.com/v1/users/'+username+'/playlists/' + playID + '/tracks?uris=' + i,
                 headers={'Authorization': 'Bearer ' + token, 'Accept': 'application/json', 'Content-Type': 'application/json'})
         #Set Volume and send the device to the newly created playlist
-        requests.put('https://api.spotify.com/v1/me/player/volume?volume_percent=100&device_id=faeeb8fa86110a9007ae4f49fbea8a93c65258b2',
+        requests.put('https://api.spotify.com/v1/me/player/volume?volume_percent=100&device_id=[DEVICE_ID]',
             headers={'Authorization': 'Bearer ' + token, 'Accept': 'application/json', 'Content-Type': 'application/json'})
-        requests.put('https://api.spotify.com/v1/me/player/play?device_id=faeeb8fa86110a9007ae4f49fbea8a93c65258b2',
+        requests.put('https://api.spotify.com/v1/me/player/play?device_id=[DEVICE_ID]',
             data="{\"context_uri\":\"spotify:playlist:" + playID + "\"}",
             headers={'Authorization': 'Bearer ' + token, 'Accept': 'application/json', 'Content-Type': 'application/json'})
 
